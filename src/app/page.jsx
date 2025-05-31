@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import PhotographerGrid from "@/components/photographer-grid"
 import FilterSidebar from "@/components/filter-sidebar"
+import MobileFilterDrawer from "@/components/mobile-filter-drawer"
 import { Skeleton } from "@/components/ui/skeleton"
 
 export const metadata = {
@@ -13,12 +14,16 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-6">
         <h1 className="text-3xl font-bold mb-6">Maternity Photographers in Bengaluru</h1>
-        
 
         <div className="flex flex-col md:flex-row gap-6 mt-6">
           {/* Desktop Sidebar */}
           <div className="hidden md:block w-64 flex-shrink-0">
             <FilterSidebar />
+          </div>
+
+          {/* Mobile Filter Drawer Trigger */}
+          <div className="md:hidden mb-4">
+            <MobileFilterDrawer />
           </div>
 
           {/* Main Content */}
@@ -29,10 +34,11 @@ export default function Home() {
                   <ResultsCount />
                 </Suspense>
               </div>
+            
             </div>
 
             <Suspense fallback={<PhotographerGridSkeleton />}>
-              <PhotographerGrid />
+               {/* <PhotographerGrid /> */}
             </Suspense>
           </div>
         </div>

@@ -144,11 +144,6 @@ const usePhotographerStore = create(
           const response = await fetch('http://localhost:3001/photographers')
           const data = await response.json()
 
-          // Simulate API delay
-          await new Promise((resolve) => setTimeout(resolve, 1500))
-
-          
-
           set((state) => ({
             photographers: mockData,
             filteredPhotographers: state.applyFilters(mockData, state.searchQuery, state.filters, state.sortBy),
