@@ -1,16 +1,42 @@
-
+import { Suspense } from "react"
 import PhotographerGrid from "@/components/photographer-grid"
+import FilterSidebar from "@/components/filter-sidebar"
+import { Skeleton } from "@/components/ui/skeleton"
 
-
-// export const metadata = {
-//   title: "Maternity Photographers in Bengaluru",
-//   description: "Find the best maternity photographers in Bengaluru for your special moments",
-// }
+export const metadata = {
+  title: "Maternity Photographers in Bengaluru",
+  description: "Find the best maternity photographers in Bengaluru for your special moments",
+}
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
-      <PhotographerGrid />
+      <div className="container mx-auto px-4 py-6">
+        <h1 className="text-3xl font-bold mb-6">Maternity Photographers in Bengaluru</h1>
+        
+
+        <div className="flex flex-col md:flex-row gap-6 mt-6">
+          {/* Desktop Sidebar */}
+          <div className="hidden md:block w-64 flex-shrink-0">
+            <FilterSidebar />
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            <div className="flex justify-between items-center mb-6">
+              <div className="text-muted-foreground">
+                <Suspense fallback={<Skeleton className="h-5 w-32" />}>
+                  <ResultsCount />
+                </Suspense>
+              </div>
+            </div>
+
+            <Suspense fallback={<PhotographerGridSkeleton />}>
+              <PhotographerGrid />
+            </Suspense>
+          </div>
+        </div>
+      </div>
     </main>
   )
 }

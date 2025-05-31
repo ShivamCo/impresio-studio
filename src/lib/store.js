@@ -140,68 +140,14 @@ const usePhotographerStore = create(
         set({ loading: true, error: null })
 
         try {
-          // In a real app, this would be:
-          // const response = await fetch('http://localhost:3001/photographers')
-          // const data = await response.json()
+         
+          const response = await fetch('http://localhost:3001/photographers')
+          const data = await response.json()
 
           // Simulate API delay
           await new Promise((resolve) => setTimeout(resolve, 1500))
 
-          const mockData = Array(24)
-            .fill(0)
-            .map((_, i) => ({
-              id: `photographer-${i + 1}`,
-              name: [
-                "Priya Sharma",
-                "Anita Reddy",
-                "Kavya Nair",
-                "Sneha Gupta",
-                "Meera Patel",
-                "Riya Singh",
-                "Pooja Kumar",
-                "Divya Iyer",
-                "Shreya Joshi",
-                "Nisha Agarwal",
-                "Asha Menon",
-                "Deepika Rao",
-                "Sonal Shah",
-                "Preeti Verma",
-                "Swati Desai",
-                "Manisha Pillai",
-                "Rekha Bhat",
-                "Sunita Jain",
-                "Vidya Krishnan",
-                "Lakshmi Devi",
-                "Shweta Malhotra",
-                "Neha Chopra",
-                "Radhika Sinha",
-                "Pallavi Bhatt",
-              ][i],
-              profileImage: `/placeholder.svg?height=300&width=300&text=Photo${i + 1}`,
-              location: [
-                "Indiranagar, Bengaluru",
-                "Koramangala, Bengaluru",
-                "Whitefield, Bengaluru",
-                "JP Nagar, Bengaluru",
-                "HSR Layout, Bengaluru",
-                "Marathahalli, Bengaluru",
-                "Electronic City, Bengaluru",
-                "Banashankari, Bengaluru",
-              ][i % 8],
-              price: 5000 + i * 1500 + Math.floor(Math.random() * 3000),
-              rating: 3.5 + Math.random() * 1.5,
-              reviews: 15 + Math.floor(Math.random() * 50),
-              tags: [
-                ["Candid", "Outdoor"],
-                ["Studio", "Traditional"],
-                ["Natural Light", "Creative"],
-                ["Candid", "Studio"],
-                ["Outdoor", "Traditional"],
-                ["Creative", "Natural Light"],
-              ][i % 6],
-              experience: `${3 + Math.floor(i / 3)}+ years`,
-              bio: "Specializing in maternity photography with a focus on natural moments and beautiful lighting.",
-            }))
+          
 
           set((state) => ({
             photographers: mockData,
