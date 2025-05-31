@@ -8,13 +8,9 @@ import usePhotographerStore from "@/lib/store";
 import { useState } from "react";
 
 export default function FilterSidebar() {
-  
   const { filters, updateFilters, getPaginatedPhotographers } =
     usePhotographerStore();
   const { photographers } = getPaginatedPhotographers();
-
-  
-  console.log(typeof lowestPrice, typeof highestPrice);
 
   const handlePriceRangeChange = (value) => {
     updateFilters({ priceRange: value });
@@ -118,7 +114,7 @@ export default function FilterSidebar() {
               "Natural Light",
               "Creative",
               "Maternity",
-              "Couple"
+              "Couple",
             ].map((style) => (
               <div key={style} className="flex items-center space-x-2">
                 <Checkbox

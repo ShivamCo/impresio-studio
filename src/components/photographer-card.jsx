@@ -8,7 +8,7 @@ export default function PhotographerCard({ photographer }) {
     <div className="border rounded-lg overflow-hidden bg-card transition-all hover:shadow-md">
       <div className="relative h-48">
         <Image
-          src={photographer.profileImage || "/placeholder.svg"}
+          src={photographer.profileImage || "/placeholder.jpg"}
           alt={photographer.name}
           fill
           className="object-cover"
@@ -38,8 +38,8 @@ export default function PhotographerCard({ photographer }) {
           <div className="flex items-center gap-1">
             <Star className="w-4 h-4 fill-primary text-primary" />
             <span className="font-medium">{ photographer.rating ? photographer.rating.toFixed(1) : "New"}</span>
-            {/* <span className="text-xs text-muted-foreground">({photographer.reviews})</span> */}
           </div>
+
         </div>
 
         <Button asChild className="w-full mt-4">

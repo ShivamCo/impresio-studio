@@ -5,57 +5,60 @@ import FilterSidebar from "@/components/filter-sidebar";
 import MobileFilterDrawer from "@/components/mobile-filter-drawer";
 import SortDropdown from "@/components/sort-dropdown";
 import { Skeleton } from "@/components/ui/skeleton";
-
+import CityHeading from "@/components/city-heading";
+import Head from "next/head";
 
 export const metadata = {
-  title: "Maternity Photographers in Bengaluru",
-  description:
-    "Find the best maternity photographers in Bengaluru for your special moments",
+  title: "Best",
+  description: "Find the best photographers for your special moments",
+  icons: {
+    icon: "/favicon.png", 
+  },
+  
 };
 
 export default function Home() {
-  
-
-  
-
   return (
-    <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-6">
-        <h1 className="text-3xl font-bold mb-6">
-          Maternity Photographers in Bengaluru
-        </h1>
-        <SearchBar />
-        
 
-        <div className="flex flex-col md:flex-row gap-6 mt-6">
-          {/* Desktop Sidebar */}
-          <div className="hidden md:block w-64 flex-shrink-0">
-            <FilterSidebar />
-          </div>
 
-          {/* Mobile Filter Drawer Trigger */}
-          <div className="md:hidden mb-4">
-            <MobileFilterDrawer />
-          </div>
+      <main className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 py-6">
+          <h1 className="text-3xl font-bold mb-6">
+            Maternity Photographers in {<CityHeading />}
+          </h1>
 
-          {/* Main Content */}
-          <div className="flex-1">
-            <div className="flex justify-between items-center mb-6">
-              <div className="text-muted-foreground">
-                <Suspense fallback={<Skeleton className="h-5 w-32" />}>
-                  <ResultsCount />
-                </Suspense>
-              </div>
-              <SortDropdown />
+          <SearchBar />
+
+          <div className="flex flex-col md:flex-row gap-6 mt-6">
+            {/* Desktop Sidebar */}
+            <div className="hidden md:block w-64 flex-shrink-0">
+              <FilterSidebar />
             </div>
 
-            <Suspense fallback={<PhotographerGridSkeleton />}>
-              <PhotographerGrid />
-            </Suspense>
+            {/* Mobile Filter Drawer Trigger */}
+            <div className="md:hidden mb-4">
+              <MobileFilterDrawer />
+            </div>
+
+            {/* Main Content */}
+            <div className="flex-1">
+              <div className="flex justify-between items-center mb-6">
+                <div className="text-muted-foreground">
+                  <Suspense fallback={<Skeleton className="h-5 w-32" />}>
+                    <ResultsCount />
+                  </Suspense>
+                </div>
+                <SortDropdown />
+              </div>
+
+              <Suspense fallback={<PhotographerGridSkeleton />}>
+                <PhotographerGrid />
+              </Suspense>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    
   );
 }
 
@@ -90,5 +93,6 @@ function PhotographerGridSkeleton() {
           </div>
         ))}
     </div>
+    
   );
 }
