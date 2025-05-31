@@ -38,7 +38,7 @@ export default function PhotographerCard({ photographer }) {
           <div className="flex items-center gap-1">
             <Star className="w-4 h-4 fill-primary text-primary" />
             <span className="font-medium">{photographer.rating.toFixed(1)}</span>
-            <span className="text-xs text-muted-foreground">({photographer.reviews})</span>
+            {/* <span className="text-xs text-muted-foreground">({photographer.reviews})</span> */}
           </div>
         </div>
 

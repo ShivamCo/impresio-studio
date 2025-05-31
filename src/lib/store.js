@@ -145,8 +145,8 @@ const usePhotographerStore = create(
           const data = await response.json()
 
           set((state) => ({
-            photographers: mockData,
-            filteredPhotographers: state.applyFilters(mockData, state.searchQuery, state.filters, state.sortBy),
+            photographers: data,
+            filteredPhotographers: state.applyFilters(data, state.searchQuery, state.filters, state.sortBy),
             loading: false,
           }))
         } catch (error) {

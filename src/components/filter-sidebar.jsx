@@ -33,7 +33,7 @@ export default function FilterSidebar() {
 
   const clearAllFilters = () => {
     updateFilters({
-      priceRange: [5000, 25000],
+      priceRange: [1000, 25000],
       ratings: [],
       styles: [],
       city: "bengaluru",
@@ -41,7 +41,7 @@ export default function FilterSidebar() {
   }
 
   const hasActiveFilters =
-    filters.priceRange[0] !== 5000 ||
+    filters.priceRange[0] !== 1000 ||
     filters.priceRange[1] !== 25000 ||
     filters.ratings.length > 0 ||
     filters.styles.length > 0 ||
@@ -63,7 +63,7 @@ export default function FilterSidebar() {
         <div>
           <h3 className="font-medium mb-3">Price Range</h3>
           <Slider
-            min={5000}
+            min={1000}
             max={50000}
             step={1000}
             value={filters.priceRange}

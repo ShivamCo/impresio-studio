@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-6">
-        <h1 className="text-3xl font-bold mb-6">Maternity Photographers in Bengaluru</h1>
+        {/* <h1 className="text-3xl font-bold mb-6">Maternity Photographers in Bengaluru</h1> */}
 
         <div className="flex flex-col md:flex-row gap-6 mt-6">
           {/* Desktop Sidebar */}
@@ -39,6 +39,7 @@ export default function Home() {
 
             <Suspense fallback={<PhotographerGridSkeleton />}>
                {/* <PhotographerGrid /> */}
+               <PhotographerGrid />
             </Suspense>
           </div>
         </div>
