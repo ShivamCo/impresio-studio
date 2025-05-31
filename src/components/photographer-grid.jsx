@@ -1,19 +1,35 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import PhotographerCard from "./photographer-card"
-import { Skeleton } from "./ui/skeleton"
-import { Button } from "./ui/button"
-import usePhotographerStore from "@/lib/store"
+import { useEffect } from "react";
+import PhotographerCard from "./photographer-card";
+import { Skeleton } from "./ui/skeleton";
+import { Button } from "./ui/button";
+import usePhotographerStore from "@/lib/store";
 
 export default function PhotographerGrid() {
-  const { loading, error, fetchPhotographers, getPaginatedPhotographers, loadMore } = usePhotographerStore()
+  const {
+    loading,
+    error,
+    setLoading,
+    fetchPhotographers,
+    getPaginatedPhotographers,
+    loadMore,
+  } = usePhotographerStore();
 
-  const { photographers, hasMore, total } = getPaginatedPhotographers()
+  const { photographers, hasMore, total } = getPaginatedPhotographers();
 
   useEffect(() => {
-    fetchPhotographers()
-  }, [fetchPhotographers])
+    
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      fetchPhotographers();
+    }, 1000);
+
+    
+
+  }, [fetchPhotographers]);
 
   if (loading && photographers.length === 0) {
     return (
@@ -37,24 +53,28 @@ export default function PhotographerGrid() {
             </div>
           ))}
       </div>
-    )
+    );
   }
 
   if (error) {
     return (
       <div className="text-center py-12">
-        <p className="text-red-500 mb-4">Error loading photographers: {error}</p>
+        <p className="text-red-500 mb-4">
+          Error loading photographers: {error}
+        </p>
         <Button onClick={fetchPhotographers}>Try Again</Button>
       </div>
-    )
+    );
   }
 
   if (photographers.length === 0 && !loading) {
     return (
       <div className="text-center py-12">
-        <p className="text-muted-foreground">No photographers found matching your criteria.</p>
+        <p className="text-muted-foreground">
+          No photographers found matching your criteria.
+        </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -76,5 +96,5 @@ export default function PhotographerGrid() {
         </div>
       )}
     </div>
-  )
+  );
 }

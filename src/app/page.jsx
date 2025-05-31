@@ -1,19 +1,31 @@
-import { Suspense } from "react"
-import PhotographerGrid from "@/components/photographer-grid"
-import FilterSidebar from "@/components/filter-sidebar"
-import MobileFilterDrawer from "@/components/mobile-filter-drawer"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Suspense } from "react";
+import PhotographerGrid from "@/components/photographer-grid";
+import SearchBar from "@/components/search-bar";
+import FilterSidebar from "@/components/filter-sidebar";
+import MobileFilterDrawer from "@/components/mobile-filter-drawer";
+import SortDropdown from "@/components/sort-dropdown";
+import { Skeleton } from "@/components/ui/skeleton";
+
 
 export const metadata = {
   title: "Maternity Photographers in Bengaluru",
-  description: "Find the best maternity photographers in Bengaluru for your special moments",
-}
+  description:
+    "Find the best maternity photographers in Bengaluru for your special moments",
+};
 
 export default function Home() {
+  
+
+  
+
   return (
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-6">
-        {/* <h1 className="text-3xl font-bold mb-6">Maternity Photographers in Bengaluru</h1> */}
+        <h1 className="text-3xl font-bold mb-6">
+          Maternity Photographers in Bengaluru
+        </h1>
+        <SearchBar />
+        
 
         <div className="flex flex-col md:flex-row gap-6 mt-6">
           {/* Desktop Sidebar */}
@@ -34,26 +46,26 @@ export default function Home() {
                   <ResultsCount />
                 </Suspense>
               </div>
-            
+              <SortDropdown />
             </div>
 
             <Suspense fallback={<PhotographerGridSkeleton />}>
-               {/* <PhotographerGrid /> */}
-               <PhotographerGrid />
+              <PhotographerGrid />
             </Suspense>
           </div>
         </div>
       </div>
     </main>
-  )
+  );
 }
 
 function ResultsCount() {
   return (
     <p>
-      Showing <span className="font-medium text-foreground">24</span> photographers
+      Showing <span className="font-medium text-foreground">24</span>{" "}
+      photographers
     </p>
-  )
+  );
 }
 
 function PhotographerGridSkeleton() {
@@ -78,5 +90,5 @@ function PhotographerGridSkeleton() {
           </div>
         ))}
     </div>
-  )
+  );
 }
