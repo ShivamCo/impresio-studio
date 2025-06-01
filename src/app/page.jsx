@@ -6,7 +6,7 @@ import MobileFilterDrawer from "@/components/mobile-filter-drawer";
 import SortDropdown from "@/components/sort-dropdown";
 import { Skeleton } from "@/components/ui/skeleton";
 import CityHeading from "@/components/city-heading";
-import Head from "next/head";
+
 
 export const metadata = {
   title: "Best",

@@ -8,7 +8,7 @@ export default function PhotographerCard({ photographer }) {
     <div className="border rounded-lg overflow-hidden bg-card transition-all hover:shadow-md">
       <div className="relative h-48">
         <Image
-          src={photographer.profileImage || "/placeholder.jpg"}
+          src={photographer.profilePic || "/placeholder.jpg"}
           alt={photographer.name}
           fill
           className="object-cover"

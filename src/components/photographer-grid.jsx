@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import PhotographerCard from "./photographer-card";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from './ui/skeleton';
 import { Button } from "./ui/button";
 import usePhotographerStore from "@/lib/store";
 

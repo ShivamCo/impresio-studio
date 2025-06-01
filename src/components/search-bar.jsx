@@ -9,7 +9,7 @@ export default function SearchBar() {
   const { searchQuery, setSearchQuery } = usePhotographerStore()
   const [localQuery, setLocalQuery] = useState(searchQuery)
 
-  // Debounce search
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setSearchQuery(localQuery)

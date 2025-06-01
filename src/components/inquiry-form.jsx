@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Calendar } from "lucide-react"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Textarea } from "./ui/textarea"
-import { Label } from "./ui/label"
+import { useState } from "react";
+import { Calendar } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Label } from "./ui/label";
 import {
   Dialog,
   DialogContent,
@@ -14,32 +14,34 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog"
+} from "./ui/dialog";
 
 export default function InquiryForm({ photographerId, photographerName }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     date: "",
     message: "",
-  })
+  });
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // In a real app, this would send the inquiry
-    console.log("Sending inquiry:", { photographerId, ...formData })
+    console.log("Sending inquiry:", { photographerId, ...formData });
 
     // Show success message and close dialog
-    alert("Your inquiry has been sent! The photographer will contact you soon.")
-    setOpen(false)
-  }
+    alert(
+      "Your inquiry has been sent! The photographer will contact you soon."
+    );
+    setOpen(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -50,12 +52,13 @@ export default function InquiryForm({ photographerId, photographerName }) {
         <DialogHeader>
           <DialogTitle>Send Inquiry to {photographerName}</DialogTitle>
           <DialogDescription>
-            Fill out the form below to inquire about booking a maternity photoshoot.
+            Fill out the form below to inquire about booking a maternity
+            photoshoot.
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid  grid-cols-1 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">Your Name</Label>
               <Input
@@ -124,10 +127,10 @@ export default function InquiryForm({ photographerId, photographerName }) {
           </div>
 
           <DialogFooter>
-            <Button type="submit">Send Inquiry</Button>
+            <Button className="bg-white-50" type="submit">Send Inquiry</Button>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
