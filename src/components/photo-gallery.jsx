@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 export default function PhotoGallery({ portfolioImages }) {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Just for debugging, remove in production
+  
   console.log("portfolioImages:", portfolioImages);
 
   const handlePrevious = () => {
