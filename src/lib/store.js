@@ -34,7 +34,7 @@ const usePhotographerStore = create(
         set({ loading: true, error: null });
 
         try {
-          const res = await fetch(`http://localhost:3001/photographers/${id}`);
+          const res = await fetch(`/api/photographers/${id}`);
           const data = await res.json();
           set({ photographerDetail: data, loading: false });
         } catch (error) {
@@ -178,7 +178,7 @@ const usePhotographerStore = create(
         set({ loading: true, error: null });
 
         try {
-          const response = await fetch("http://localhost:3001/photographers");
+          const response = await fetch('/api/photographers');
           const data = await response.json();
 
           set((state) => ({
