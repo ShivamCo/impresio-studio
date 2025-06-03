@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Impresio Studio',
   description: 'Impresio Studio',
   generator: 'Impresio Studio',
+  
 }
 
 export default function RootLayout({
