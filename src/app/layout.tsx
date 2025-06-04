@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { SessionWrapper } from './SessionWrapper'
 
 export const metadata: Metadata = {
-  title: 'Impresio Studio',
-  description: 'Impresio Studio',
-  generator: 'Impresio Studio',
-  
+  title: 'ShutterSeek',
+  description: 'Find. Book. Capture.',
+  generator: 'ShutterSeek',
 }
 
 export default function RootLayout({
@@ -15,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SessionWrapper>{children}</SessionWrapper>
+      </body>
     </html>
   )
 }
