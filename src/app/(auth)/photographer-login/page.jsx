@@ -40,57 +40,90 @@ export default function PhotographerAuth() {
   });
 
   const [signupData, setSignupData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
     businessName: "",
-    agreeToTerms: false,
+    agreeToTerms: true,
   });
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await fetch("/api/photographers/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
+  try {
+    const res = await fetch("/api/auth/photographer/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginData), // correct data source
+    });
 
-      if (!res.ok) throw new Error("Login failed");
+    const data = await res.json();
 
-      const { token } = await res.json();
+    if (!res.ok) {
 
-      localStorage.setItem("token", token); // or use cookies
-      toast.success("Login successful!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      // Navigate to dashboard
-    } catch (err) {
-      console.error(err);
-      alert("Invalid credentials.");
+      toast.error(data.erro|| "Login Failed", {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+      
+      return;
     }
-  };
+
+    toast.success('Login successful!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+    // Optionally redirect or update user context here
+    // router.push('/dashboard');
+  } catch (err) {
+    toast.error('Network Error', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    console.error(err);
+  }
+};
+
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
     if (signupData.password !== signupData.confirmPassword) {
-      alert("Passwords do not match!");
+      
+
+      toast.error('Passwords do not match!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
       return;
     }
 
     try {
-      const res = await fetch("/api/auth/photographer-signup", {
+      const res = await fetch("/api/auth/photographer/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(signupData),
@@ -99,11 +132,20 @@ export default function PhotographerAuth() {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.error || "Signup failed");
+         toast.error(data.error ||'SignUp successful!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+       
         return;
       }
 
-     toast.success('Login successful!', {
+     toast.success('SignUp successful!', {
       position: 'top-right',
       autoClose: 3000,
       hideProgressBar: false,
@@ -113,7 +155,18 @@ export default function PhotographerAuth() {
       progress: undefined,
     });
     } catch (err) {
-      alert("Network error");
+
+       toast.error('Network Error', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+      
       console.error(err);
     }
   };
@@ -317,27 +370,27 @@ export default function PhotographerAuth() {
                 <TabsContent value="signup">
                   <form onSubmit={handleSignup} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="signup-name">Full name</Label>
+                      <Label htmlFor="signup-fullName">Full fullName</Label>
                       <Input
-                        id="signup-name"
-                        value={signupData.name}
+                        id="signup-fullName"
+                        value={signupData.fullName}
                         onChange={(e) =>
                           setSignupData((prev) => ({
                             ...prev,
-                            name: e.target.value,
+                            fullName: e.target.value,
                           }))
                         }
-                        placeholder="Enter your full name"
+                        placeholder="Enter your full fullName"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="business-name">
-                        Business/Studio name (Optional)
+                      <Label htmlFor="business-fullName">
+                        Business/Studio fullName (Optional)
                       </Label>
                       <Input
-                        id="business-name"
+                        id="business-fullName"
                         value={signupData.businessName}
                         onChange={(e) =>
                           setSignupData((prev) => ({
@@ -436,12 +489,7 @@ export default function PhotographerAuth() {
                       <Checkbox
                         id="terms"
                         checked={signupData.agreeToTerms}
-                        onCheckedChange={(checked) =>
-                          setSignupData((prev) => ({
-                            ...prev,
-                            agreeToTerms: Boolean(checked),
-                          }))
-                        }
+                        onCheckedChange={()=> !agreeToTerms }
                         required
                       />
                       <Label htmlFor="terms" className="text-sm">
